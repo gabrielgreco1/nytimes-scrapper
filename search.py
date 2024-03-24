@@ -1,9 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException, TimeoutException, StaleElementReferenceException
+from webdriver_manager.chrome import ChromeDriverManager
+import urllib.parse
+from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 import requests
 import pandas as pd
 import os
@@ -11,16 +15,55 @@ import json
 import time
 
 class NYTSearch:
-    def __init__(self, query):
+    def __init__(self, query, months):
         self.query = query
+        self.months = months
         self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         self.wait = WebDriverWait(self.driver, 10)
         self.filepath = f'C:\\Challenge_RPA_PixelDu\\scrappedItems\\news_{query}.xlsx'
         self.filepath = self.filepath.replace(' ','_')
 
     def open_search(self):
-        self.driver.get(f"https://www.nytimes.com/search?dropmab=false&query={self.query}&sort=newest")
+        # Calcula a data atual e a data de início com base no número de meses
+        endDate = datetime.now()
+        startDate = endDate - relativedelta(months=self.months)
+        if self.months == 0:
+            startDate = endDate - relativedelta(months=1)
 
+        # Formata as datas no formato requerido pelo URL
+        formatted_endDate = endDate.strftime("%Y-%m-%d")
+        formatted_startDate = startDate.strftime("%Y-%m-%d")
+
+        # Monta o URL com as datas formatadas
+        query_encoded = urllib.parse.quote(self.query)  # Garante que a query seja corretamente codificada para URL
+        url = f"https://www.nytimes.com/search?dropmab=false&endDate={formatted_endDate}&query={query_encoded}&sort=newest&startDate={formatted_startDate}"
+        
+        print(url)
+        # Abre a página com o URL configurado
+        self.driver.get(url)
+
+    def click_show_more(self):
+        while True:
+            try:
+                # Busca pelo botão "SHOW MORE" a cada iteração para obter a referência mais atual
+                show_more_button = WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, "//button[@data-testid='search-show-more-button']"))
+                )
+                # Rola até o botão "SHOW MORE"
+                self.driver.execute_script("arguments[0].scrollIntoView(true);", show_more_button)
+                # Espera um pouco para a rolagem acontecer e para o layout da página se ajustar
+                time.sleep(1)
+                # Clica no botão "SHOW MORE" via JavaScript
+                self.driver.execute_script("arguments[0].click();", show_more_button)
+            except TimeoutException:
+                # Se o botão "SHOW MORE" não for encontrado após o tempo de espera, sai do loop
+                print("Botão 'SHOW MORE' não encontrado. Saindo do loop.")
+                break
+            except StaleElementReferenceException:
+                # Se o botão se tornar obsoleto durante a busca, tenta novamente na próxima iteração
+                print("Referência obsoleta do elemento. Tentando encontrar novamente...")
+                continue
+                
     def scrape_list_items(self):
         try:
             # Wait until the list appears on the webpage
@@ -93,7 +136,8 @@ class NYTSearch:
             'date': [news_data['date'][0]] if news_data['date'] else [None],
             'paragraphs': [selected_paragraph],
             'links': [news_data['links'][0]] if news_data['links'] else [None],
-            'image_urls': [image_urls[0]] if image_urls else 'No image available'
+            'image_urls': [image_urls[0]] if image_urls else 'No image available',
+            'imageFilepath': self.filepath
         }
         
         df = pd.DataFrame(data_for_df)
@@ -119,6 +163,9 @@ class NYTSearch:
     def run(self):
         # Open the search page
         self.open_search()
+        # time.sleep(500)
+        self.click_show_more()
+        # self.close_banner()
 
         # Scrape all list items
         list_items = self.scrape_list_items()
@@ -134,9 +181,9 @@ class NYTSearch:
                 print('-------------------------------------------------------------')
 
                 for url in data['imageUrls']:
-                        filename = f"{data['newsData']['headings']}.jpg".replace('[', '').replace(']', '').replace('?', '')
-                        save_path = f"C:\\Challenge_RPA_PixelDu\\images\\{filename}"
-                        self.download_image(url, save_path)
+                    filename = f"{data['newsData']['headings']}.jpg".replace('[', '').replace(']', '').replace('?', '')
+                    save_path = f"C:\\Challenge_RPA_PixelDu\\images\\{filename}"
+                    self.download_image(url, save_path)
                
         self.driver.quit()
         return all_item_details
