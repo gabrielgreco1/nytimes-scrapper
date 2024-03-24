@@ -1,3 +1,6 @@
 /__pycache__
 .venv
 /chrome-win64
+/images
+/scrappedItems
+drop.py
