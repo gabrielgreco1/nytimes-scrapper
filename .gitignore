@@ -4,3 +4,6 @@
 /images
 /scrappedItems
 drop.py
+config.py
+.gitignore
+/utils
