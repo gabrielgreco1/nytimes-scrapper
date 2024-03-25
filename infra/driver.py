@@ -3,7 +3,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
-# Isolate WebDriver Settings
+# Isolate WebDriver Settings in a function
 def driverSettings():
     chrome_options = Options()
     chrome_options.add_argument('--headless')

@@ -1,4 +1,8 @@
 /__pycache__
+utils/__pycache__
+infra/__pycache__
+domain/__pycache__
+app/__pycache__
 .venv
 /chrome-win64
 /images
@@ -6,5 +10,3 @@
 drop.py
 config.py
 .gitignore
-/utils
-/app
