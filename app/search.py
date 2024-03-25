@@ -46,11 +46,9 @@ class NYSearch:
                 if clean_option_text.lower() == self.subject.lower():
                     option_input = option_label.find_element(By.XPATH, "./ancestor::li//input[@type='checkbox']")
                     self.driver.execute_script("arguments[0].click();", option_input) # Forces the selection
-                    print(f"Opção '{option_text}' selecionada.")
                     break
     
     def click_show_more(self):
-        print('Finding all news..')
         while True:
             try:
                 # Busca pelo botão "SHOW MORE" a cada iteração para obter a referência mais atual
@@ -64,12 +62,8 @@ class NYSearch:
                 # Clica no botão "SHOW MORE" via JavaScript
                 self.driver.execute_script("arguments[0].click();", show_more_button)
             except TimeoutException:
-                # Se o botão "SHOW MORE" não for encontrado após o tempo de espera, sai do loop
-                print("Botão 'SHOW MORE' não encontrado. Saindo do loop.")
                 break
             except StaleElementReferenceException:
-                # Se o botão se tornar obsoleto durante a busca, tenta novamente na próxima iteração
-                print("Referência obsoleta do elemento. Tentando encontrar novamente...")
                 continue
 
     def search(self):

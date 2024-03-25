@@ -1,3 +1,6 @@
+from infra.logging_config import setup_logging
+setup_logging()
+
 from app.run import run
 from infra.driver import driverSettings
 import config

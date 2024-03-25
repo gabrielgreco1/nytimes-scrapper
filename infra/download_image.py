@@ -8,4 +8,3 @@ class downloads:
 
         # Using urllib.request.urlretrieve to download the image and save in the specified path
         urllib.request.urlretrieve(image_url, save_path)
-        print(f"Imagem baixada com sucesso em: {save_path}")

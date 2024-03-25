@@ -1,3 +1,4 @@
+import logging
 import config
 import re 
 import os
@@ -11,6 +12,7 @@ from app.search import NYSearch
 
 class run:
     def __init__(self, driver, query, subject):
+        self.logger = logging.getLogger(__name__)
         self.driver = driver
         self.query = query
         self.subject = subject
@@ -29,31 +31,33 @@ class run:
         self.save = save(self.excel_path)
 
     def run_search(self):
-        print('Starting the automation')
-
-        # Start the search
-        self.search.search()
+        self.logger.info('Starting the automation')
 
         # Create directory
+        self.logger.info('Creating directorys...')
         self.directory.create_directory()
+        
+        # Start the search
+        self.logger.info('Searching news for the required parameters')
+        self.search.search()
 
         # Scrape all list items
+        self.logger.info('Listing all news...')
         list_items = self.scrap_all.scrape_list_items()
-
+        
+        self.logger.info('Starting to scrap all the information from each item')
         for item in list_items:
             # Scrape details for each item
             data = self.scrap_each.scrape_item_details(item)
             if data:
-                print("-------------------------------------------------------------")
                 for index, url in enumerate(data["imageUrls"]):
                     filename = f"{data['newsData']['headings']}.jpg"
                     filename = re.sub(r'[\\/:*?"<>|\[\]]', "", filename)
                     self.save_path = os.path.join(self.images_path, filename)
-                    # print(url,'----------', self.save_path)
                     downloads.download_image(url, self.save_path)
                 data['newsData']['savePath'] = self.save_path
                 self.save.save_to_xlsx(data)
                 
-        print('Automation finished')       
+        self.logger.info('Automation Finished')      
         self.driver.quit()
         return []

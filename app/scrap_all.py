@@ -11,12 +11,10 @@ class scrap_all:
 
     # Scrap all the news from the page
     def scrape_list_items(self):
-        print("Reading all news...")
         try:
             self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "ol")))
             # Fetch all list items
             list_items = self.driver.find_elements(By.CSS_SELECTOR, "ol > li")
             return list_items
         except TimeoutError:
-            print("The list did not load in time")
             return []

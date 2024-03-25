@@ -6,7 +6,6 @@ class save:
         self.excel_path = excel_path
         
     def save_to_xlsx(self, data):
-            print('Saving to xlsx...')
             # Define o texto base do link indesejado para a verificação
             undesired_links_texts = [
                                     "https://www.nytimes.com/search?dropmab=false",
@@ -14,7 +13,6 @@ class save:
             ]        
             # Verifica se algum link na lista contém o texto base
             if any(any(base_text in link for base_text in undesired_links_texts) for link in data["newsData"]["links"]):
-                print("Encontrado link com texto base indesejado, registro ignorado.")
                 return
             
             # separar função
