@@ -7,6 +7,7 @@ from selenium.common.exceptions import NoSuchElementException, ElementClickInter
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+import re  
 import config
 import urllib.parse
 from datetime import datetime, timedelta
@@ -14,20 +15,19 @@ from dateutil.relativedelta import relativedelta
 import requests
 import pandas as pd
 import os
-import json
 import time
 
-class NYTSearch:
-    def __init__(self, driver, query, months):
+class NYSearch:
+    def __init__(self, driver, query, subject, months):
         self.driver = driver
         self.query = query
+        self.subject = subject
         self.months = months
         self.wait = WebDriverWait(self.driver, 10)
         self.filepath = f"{config.path}\\{query}"
         self.filepath = self.filepath.replace(" ","_")
         self.excelpath = f"{self.filepath}\\news.xlsx"
         self.images_path = f"{self.filepath}\\images\\"
-        
         
 
     def create_directory(self, filepath):
@@ -54,6 +54,38 @@ class NYTSearch:
         url = self.construct_url(formatted_endDate, formatted_startDate)
         print('Opening the site')
         self.driver.get(url)
+    
+    def select_subject(self):
+            # Clica no botão para revelar as opções
+        button = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//button[@data-testid='search-multiselect-button']"))
+        )
+        button.click()
+
+        # Aguarda até que o menu dropdown seja visível
+        WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, "//ul[@data-testid='multi-select-dropdown-list']"))
+        )
+
+        # Localiza todas as opções no dropdown
+        options_labels = self.driver.find_elements(By.XPATH, "//ul[@data-testid='multi-select-dropdown-list']/li//span[@class='css-16eo56s']")
+
+        print(options_labels)
+        # Itera pelas opções para encontrar a correspondência
+        for option_label in options_labels:
+            option_text = option_label.text.strip()  # Usa .text para obter o texto visível e .strip() para remover espaços extras
+            print(f"Opção encontrada: {option_text}")  # Opcional: para depuração
+            
+            # Usa uma expressão regular para extrair apenas a parte alfabética do texto da opção
+            match = re.match(r"([a-zA-Z]+)", option_text)
+            if match:
+                clean_option_text = match.group(1)  # O texto da opção sem números ou caracteres especiais
+            # Verifica se o texto da opção corresponde ao subject desejado
+            if clean_option_text.lower() == self.subject.lower():
+                option_input = option_label.find_element(By.XPATH, "./ancestor::li//input[@type='checkbox']")
+                self.driver.execute_script("arguments[0].click();", option_input)
+                print(f"Opção '{option_text}' selecionada.")
+                break
 
     def click_show_more(self):
         print('Finding all news..')
@@ -176,6 +208,9 @@ class NYTSearch:
         # Open the search page
         self.open_search()
 
+        # Select the subject
+        self.select_subject()
+
         # Click in show more button as many as needed
         self.click_show_more()
 
@@ -192,7 +227,6 @@ class NYTSearch:
             data = self.scrape_item_details(item)
             if data:
                 print("-------------------------------------------------------------")
-
                 for url in data["imageUrls"]:
                     filename = f"{data["newsData"]["headings"]}.jpg".replace("[", "").replace("]", "").replace("?", "")
                     save_path = f"{self.images_path}{filename}"
