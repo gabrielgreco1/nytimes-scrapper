@@ -216,6 +216,7 @@ class NYSearch:
 
         # Scrape all list items
         list_items = self.scrape_list_items()
+        save_path = None
 
         # Creating the main directorys
         self.create_directory(self.filepath)
@@ -227,8 +228,9 @@ class NYSearch:
             data = self.scrape_item_details(item)
             if data:
                 print("-------------------------------------------------------------")
-                for url in data["imageUrls"]:
-                    filename = f"{data["newsData"]["headings"]}.jpg".replace("[", "").replace("]", "").replace("?", "")
+                for index, url in enumerate(data["imageUrls"]):
+                    filename = f"{index} - {data['newsData']['headings']}.jpg"
+                    filename = re.sub(r'[\\/:*?"<>|\[\]]', "", filename)
                     save_path = f"{self.images_path}{filename}"
                     self.download_image(url, save_path)
                 data['newsData']['savePath'] = save_path
