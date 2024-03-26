@@ -14,12 +14,6 @@ def driverSettings():
     chrome_options.add_argument('--disable-web-security')
     chrome_options.add_argument("--start-maximized")
     chrome_options.add_experimental_option("excludeSwitches", ["disable-logging"])
-    
-    # # Redirecionar stdout e stderr para devnull para suprimir logs indesejados
-    # service = Service(ChromeDriverManager().install())
-    # service.log_path = os.devnull
-    # if sys.platform == "win32":
-    #     service.creationflags = 0x08000000  # CREATE_NO_WINDOW
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     return driver

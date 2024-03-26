@@ -3,10 +3,12 @@ import config
 import re 
 import os
 from utils.directory import directory
-from app.scrap_all import scrap_all
-from app.scrap_each import scrap_each
 from infra.download_image import downloads
 from domain.save_data import save
+from domain.money import moneychecker
+from domain.phrase_count import phrase_counter
+from app.scrap_all import scrap_all
+from app.scrap_each import scrap_each
 from app.search import NYSearch
 
 
@@ -31,33 +33,38 @@ class run:
         self.save = save(self.excel_path)
 
     def run_search(self):
-        self.logger.info('Starting the automation')
+        self.logger.info("Starting the automation.")
 
         # Create directory
-        self.logger.info('Creating directorys...')
+        self.logger.info("Creating directories...")
         self.directory.create_directory()
         
         # Start the search
-        self.logger.info('Searching news for the required parameters')
+        self.logger.info(f"Initiating search with query '{self.query}' and subject '{self.subject}'.")
         self.search.search()
 
         # Scrape all list items
-        self.logger.info('Listing all news...')
+        self.logger.info("Compiling list of news articles...")
         list_items = self.scrap_all.scrape_list_items()
         
-        self.logger.info('Starting to scrap all the information from each item')
-        for item in list_items:
-            # Scrape details for each item
-            data = self.scrap_each.scrape_item_details(item)
-            if data:
-                for index, url in enumerate(data["imageUrls"]):
-                    filename = f"{data['newsData']['headings']}.jpg"
-                    filename = re.sub(r'[\\/:*?"<>|\[\]]', "", filename)
-                    self.save_path = os.path.join(self.images_path, filename)
-                    downloads.download_image(url, self.save_path)
-                data['newsData']['savePath'] = self.save_path
-                self.save.save_to_xlsx(data)
+        self.logger.info("Beginning detailed information scraping for each news item.")
+        try:
+            for item in list_items:
+                # Scrape details for each item
+                data = self.scrap_each.scrape_item_details(item)
+                if data:
+                    for url in data["imageUrls"]:
+                        filename = f"{data["newsData"]["headings"]}.jpg"
+                        filename = re.sub(r'[\\/:*?"<>|\[\]]', "", filename)
+                        self.save_path = os.path.join(self.images_path, filename)
+                        downloads.download_image(url, self.save_path)
+                    data["newsData"]["savePath"] = self.save_path
+                    data["newsData"]["containsMoney"] = moneychecker.check_data_for_money(data)
+                    data["newsData"]["phraseCounter"] = phrase_counter.count_query_in_data(data, self.query)
+                    self.save.save_to_xlsx(data)
+        finally:
+            self.logger.info(f"Data secured at excel file - news.xlsx") 
                 
-        self.logger.info('Automation Finished')      
+        self.logger.info("Automation completed successfully.")      
         self.driver.quit()
         return []

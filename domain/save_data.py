@@ -14,12 +14,11 @@ class save:
             # Verifica se algum link na lista contém o texto base
             if any(any(base_text in link for base_text in undesired_links_texts) for link in data["newsData"]["links"]):
                 return
-            
-            # separar função
-            
+                    
             # Desempacota os dados
             news_data = data["newsData"]
             image_urls = data["imageUrls"]
+            contains_money = 'T' if data["newsData"]["containsMoney"] else 'F'
             
             # Seleciona o segundo parágrafo de "paragraphs", conforme especificado
             selected_paragraph = news_data["paragraphs"][1] if len(news_data["paragraphs"]) > 1 else None
@@ -31,7 +30,9 @@ class save:
                 "paragraphs": [selected_paragraph],
                 "links": [news_data["links"][0]] if news_data["links"] else [None],
                 "image_urls": [image_urls[0]] if image_urls else "No image available",
-                "imagefile_path":news_data["savePath"]
+                "imagefile_path":news_data["savePath"],
+                "containsMoney": contains_money,
+                "phraseCounter": news_data["phraseCounter"]
             }
             
             df = pd.DataFrame(data_for_df)

@@ -18,6 +18,14 @@ class NYSearch:
     def open_search(self):
         self.driver.get(self.url.construct_url())
 
+    def news_quantity(self):
+        element = self.driver.find_elements(By.XPATH, """//*[@id="site-content"]/div/div[1]/div[1]/p""")
+        element_text = element[0].text
+        element_list = element_text.split("\n")
+        # Usa regex para encontrar números no texto
+        matches = re.findall(r'\d+', element_list[0])
+        print(matches)
+
     def select_subject(self):
             # Click on the button to reveal options
             button = WebDriverWait(self.driver, 10).until(

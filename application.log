@@ -1,10 +1,12 @@
-2024-03-25 19:02:12 - WDM - INFO - ====== WebDriver manager ======
-2024-03-25 19:02:13 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2024-03-25 19:02:13 - WDM - INFO - Get LATEST chromedriver version for google-chrome
-2024-03-25 19:02:14 - WDM - INFO - Driver [C:\Users\gabri\.wdm\drivers\chromedriver\win64\122.0.6261.128\chromedriver-win32/chromedriver.exe] found in cache
-2024-03-25 19:02:15 - app.run - INFO - Starting the automation
-2024-03-25 19:02:15 - app.run - INFO - Creating directorys...
-2024-03-25 19:02:15 - app.run - INFO - Searching news for the required parameters
-2024-03-25 19:02:29 - app.run - INFO - Listing all news...
-2024-03-25 19:02:29 - app.run - INFO - Starting to scrap all the information from each item
-2024-03-25 19:02:32 - app.run - INFO - Automation Finished
+2024-03-26 00:52:54 - WDM - INFO - ====== WebDriver manager ======
+2024-03-26 00:52:55 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2024-03-26 00:52:55 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2024-03-26 00:52:56 - WDM - INFO - Driver [C:\Users\gabri\.wdm\drivers\chromedriver\win64\122.0.6261.128\chromedriver-win32/chromedriver.exe] found in cache
+2024-03-26 00:52:57 - app.run - INFO - Starting the automation.
+2024-03-26 00:52:57 - app.run - INFO - Creating directories...
+2024-03-26 00:52:57 - app.run - INFO - Initiating search with query 'action' and subject 'Any'.
+2024-03-26 00:54:24 - app.run - INFO - Compiling list of news articles...
+2024-03-26 00:54:25 - app.run - INFO - Beginning detailed information scraping for each news item.
+2024-03-26 00:59:33 - app.run - INFO - Data secured at excel file - news.xlsx
+2024-03-26 00:59:33 - app.run - INFO - Automation completed successfully.
+
