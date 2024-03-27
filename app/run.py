@@ -40,7 +40,6 @@ class run:
         self.directory.create_directory()
         
         # Start the search
-        self.logger.info(f"Initiating search with query '{self.query}' and subject '{self.subject}'.")
         self.search.search()
 
         # Scrape all list items

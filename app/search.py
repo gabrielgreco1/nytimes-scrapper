@@ -1,17 +1,19 @@
 import re  
 import time
+import logging
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import  TimeoutException, StaleElementReferenceException
 from utils.url import UrlParser
 
-
 class NYSearch:
     def __init__(self, driver, query, subject):
+        self.logger = logging.getLogger(__name__)
         self.driver = driver
         self.query = query
         self.subject = subject
+        self.quantity = 0
         self.url = UrlParser(self.query)
         self.wait = WebDriverWait(self.driver, 10)
 
@@ -22,9 +24,8 @@ class NYSearch:
         element = self.driver.find_elements(By.XPATH, """//*[@id="site-content"]/div/div[1]/div[1]/p""")
         element_text = element[0].text
         element_list = element_text.split("\n")
-        # Usa regex para encontrar números no texto
         matches = re.findall(r'\d+', element_list[0])
-        print(matches)
+        return matches[0]
 
     def select_subject(self):
             # Click on the button to reveal options
@@ -75,11 +76,18 @@ class NYSearch:
                 continue
 
     def search(self):
+
+        self.logger.info(f"Initiating search with query '{self.query}' and subject '{self.subject}'.")
         # Open the search page
         self.open_search()
 
         # Select the subject
         self.select_subject()
 
+        # Get quantity
+        self.quantity = self.news_quantity()
+        self.logger.info(f"Scrapping {self.quantity} news")
+
         # Click in show more button as many as needed
         self.click_show_more()
+
