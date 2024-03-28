@@ -14,5 +14,5 @@ def driverSettings():
     # chrome_options.add_argument("--start-maximized")
     # chrome_options.add_experimental_option("excludeSwitches", ["disable-logging"])
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    driver = webdriver.Chrome(service=None, options=chrome_options)
     return driver
