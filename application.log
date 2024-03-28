@@ -14,3 +14,10 @@
 2024-03-27 20:55:41 - rpaChallenge.app.run - INFO - Creating directories...
 2024-03-27 20:55:41 - rpaChallenge.app.search - INFO - Initiating search with query 'global warming' and subject 'Any'.
 2024-03-27 20:55:49 - rpaChallenge.app.search - INFO - Scrapping 2 news
+2024-03-27 21:34:16 - WDM - INFO - ====== WebDriver manager ======
+2024-03-27 21:34:18 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2024-03-27 21:34:19 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2024-03-27 21:34:19 - WDM - INFO - Driver [C:\Users\gabri\.wdm\drivers\chromedriver\win64\123.0.6312.86\chromedriver-win32/chromedriver.exe] found in cache
+2024-03-27 21:34:21 - app.run - INFO - Starting the automation.
+2024-03-27 21:34:21 - app.run - INFO - Creating directories...
+2024-03-27 21:34:21 - app.search - INFO - Initiating search with query 'gas price' and subject 'Any'.

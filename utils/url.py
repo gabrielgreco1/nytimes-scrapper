@@ -1,5 +1,5 @@
 import urllib.parse
-from rpaChallenge.utils.date import date_formatting
+from utils.date import date_formatting
 import config
 
 class UrlParser:

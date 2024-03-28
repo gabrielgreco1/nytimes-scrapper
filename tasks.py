@@ -1,9 +1,9 @@
-from rpaChallenge.infra.logging_config import setup_logging
+from infra.logging_config import setup_logging
 from robocorp.tasks import task
 setup_logging()
 
-from rpaChallenge.app.run import RunClass
-from rpaChallenge.infra.driver import driverSettings
+from app.run import RunClass
+from infra.driver import driverSettings
 import config
 
 @task

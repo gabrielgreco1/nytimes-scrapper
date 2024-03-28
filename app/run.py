@@ -2,14 +2,14 @@ import logging
 import config
 import re 
 import os
-from rpaChallenge.utils.directory import directory
-from rpaChallenge.infra.download_image import downloads
-from rpaChallenge.domain.save_data import save
-from rpaChallenge.domain.money import moneychecker
-from rpaChallenge.domain.phrase_count import phrase_counter
-from rpaChallenge.app.scrap_all import scrap_all
-from rpaChallenge.app.scrap_each import scrap_each
-from rpaChallenge.app.search import NYSearch
+from utils.directory import directory
+from infra.download_image import downloads
+from domain.save_data import save
+from domain.money import moneychecker
+from domain.phrase_count import phrase_counter
+from app.scrap_all import scrap_all
+from app.scrap_each import scrap_each
+from app.search import NYSearch
 from robocorp.tasks import task
 
 
