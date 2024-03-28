@@ -2,7 +2,7 @@
 
 tasks:
   Run Task:
-    shell: python -m robocorp.tasks run tasks.py --self
+    shell: python -m robocorp.tasks run tasks.py
 
 environmentConfigs:
   - environment_windows_amd64_freeze.yaml
