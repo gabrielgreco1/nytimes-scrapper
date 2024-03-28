@@ -7,7 +7,7 @@ dependencies:
   - numpy=1.26.4
   - pip
   - pip:
-    - selenium==4.18.1
+    - selenium==4.15.2
     - openpyxl==3.1.2
     - pandas==2.2.1
     - attrs==23.2.0
