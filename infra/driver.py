@@ -13,6 +13,7 @@ def driverSettings():
     options.add_argument('--disable-web-security')
     options.add_argument("--start-maximized")
     options.add_argument('--remote-debugging-port=9222')
+    options.add_argument("--window-size=1280,720")  # Define o tamanho da janela, pode ajudar em alguns casos
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
     driver = webdriver.Chrome(service=None, options=options)
