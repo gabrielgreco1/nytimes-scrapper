@@ -11,6 +11,6 @@ class moneychecker:
     
     @classmethod
     def check_data_for_money(cls, data):
-        # Verifica em headings e paragraphs
+        # Verify headings and paragraphs
         text_fields = data["newsData"]["headings"] + data["newsData"]["paragraphs"]
         return any(cls.contains_money(text) for text in text_fields)

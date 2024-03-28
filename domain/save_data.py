@@ -6,24 +6,24 @@ class save:
         self.excel_path = excel_path
         
     def save_to_xlsx(self, data):
-            # Define o texto base do link indesejado para a verificação
+            # Sets the base text of the unwanted link for checking
             undesired_links_texts = [
                                     "https://www.nytimes.com/search?dropmab=false",
                                     "https://www.nytimes.com/topic/"
             ]        
-            # Verifica se algum link na lista contém o texto base
+            # Checks if any link in the list contains the base text
             if any(any(base_text in link for base_text in undesired_links_texts) for link in data["newsData"]["links"]):
                 return
                     
-            # Desempacota os dados
+            # Unpack the data
             news_data = data["newsData"]
             image_urls = data["imageUrls"]
             contains_money = 'T' if data["newsData"]["containsMoney"] else 'F'
             
-            # Seleciona o segundo parágrafo de "paragraphs", conforme especificado
+            # Selects the second paragraph of "paragraphs" as specified
             selected_paragraph = news_data["paragraphs"][1] if len(news_data["paragraphs"]) > 1 else None
             
-            # Preparando os dados para DataFrame
+            # Preparing the data for DataFrame
             data_for_df = {
                 "headings": [news_data["headings"][0]] if news_data["headings"] else [None],
                 "date": [news_data["date"][0]] if news_data["date"] else [None],
@@ -37,20 +37,20 @@ class save:
             
             df = pd.DataFrame(data_for_df)
             
-            # Se o arquivo já existe, carrega o DataFrame existente e anexa os novos dados
+            # If the file already exists, load the existing DataFrame and append the new data
             if os.path.exists(self.excel_path):
                 with pd.ExcelWriter(self.excel_path, engine="openpyxl", mode="a", if_sheet_exists="overlay") as writer:
-                    # Lê o arquivo Excel existente e o DataFrame da planilha específica
+                    # Reads existing Excel file and DataFrame of specific worksheet
                     try:
                         existing_data_df = pd.read_excel(self.excel_path, sheet_name="News Data")
-                        # Anexa os novos dados
+                        # Attach the new data
                         updated_df = pd.concat([existing_data_df, df], ignore_index=True)
-                        # Salva o DataFrame atualizado no arquivo, substituindo a planilha existente
+                        # Saves the updated DataFrame to the file, replacing the existing worksheet
                         updated_df.to_excel(writer, sheet_name="News Data", index=False)
                     except ValueError:
-                        # Se a planilha não existir, apenas escreve os novos dados
+                        # If the spreadsheet doesn't exist, just write the new data
                         df.to_excel(writer, sheet_name="News Data", index=False)
             else:
-                # Se o arquivo não existe, cria um novo e salva os dados
+                #  If the file does not exist, create a new one and save the data
                 with pd.ExcelWriter(self.excel_path, engine="openpyxl") as writer:
                     df.to_excel(writer, sheet_name="News Data", index=False)

@@ -3,13 +3,13 @@ import logging
 
 def setup_logging():
     logging.basicConfig(
-        filename='application.log',  # Salva os logs em um arquivo
-        level=logging.INFO,  # Define o nível mínimo de severidade para capturar
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',  # Formato customizado para as mensagens de log
-        datefmt='%Y-%m-%d %H:%M:%S',  # Formato de data/hora
+        filename='application.log',  # Saves logs to a file
+        level=logging.INFO,  # Sets the minimum severity level to capture
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',  # Custom format for log messages
+        datefmt='%Y-%m-%d %H:%M:%S',  # Date/time format
     )
 
-    # Configura um handler adicional para saída no console com nível WARNING ou superior
+    # Configures an additional handler for console output with WARNING level or higher
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.WARNING)
     console_handler.setFormatter(logging.Formatter('%(name)s - %(levelname)s - %(message)s'))

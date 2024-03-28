@@ -72,15 +72,17 @@ class NYSearch:
     def click_show_more(self):
         while True:
             try:
-                # Busca pelo botão "SHOW MORE" a cada iteração para obter a referência mais atual
+                # Search for the "SHOW MORE" button with each iteration to obtain the most current reference
                 show_more_button = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((By.XPATH, "//button[@data-testid='search-show-more-button']"))
                 )
-                # Rola até o botão "SHOW MORE"
+                # Scrolls to SHOW MORE button
                 self.driver.execute_script("arguments[0].scrollIntoView(true);", show_more_button)
-                # Espera um pouco para a rolagem acontecer e para o layout da página se ajustar
+
+                # Wait 1s
                 time.sleep(1)
-                # Clica no botão "SHOW MORE" via JavaScript
+
+                # Click on the "SHOW MORE" button via JavaScript
                 self.driver.execute_script("arguments[0].click();", show_more_button)
             except TimeoutException:
                 break
