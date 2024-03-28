@@ -1,5 +1,5 @@
 # config.py
-query = "gas price"
-subject = "Any"
-months = 1
+query = "brazil"
+subject = "Sports"
+months = 3
 path = "C:\\Challenge_RPA_PixelDu"
