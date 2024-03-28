@@ -1,20 +1,17 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from robocorp.tasks import task
+from RPA.Browser.Selenium import Selenium
 
 def driverSettings():
-    options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument("--disable-extensions")
-    options.add_argument("--disable-gpu")
-    options.add_argument('--disable-web-security')
-    options.add_argument("--start-maximized")
-    options.add_argument('--remote-debugging-port=9222')
-    options.add_argument("--window-size=1280,720") 
-    options.add_experimental_option("excludeSwitches", ["enable-logging"])
+    browser = Selenium()
+    
+    # Define as opções do Chrome para execução em modo headless
+    options = [
+        "--headless",
+        "--disable-gpu",
+        "--no-sandbox",
+        "--window-size=1920,1080"
+    ]
 
-    driver = webdriver.Chrome(service=None, options=options)
-    return driver
+    # Inicializa o navegador com as opções especificadas
+    browser.open_browser(browser="chrome", options=options)
+    
+    return browser

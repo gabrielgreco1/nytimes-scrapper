@@ -26,7 +26,7 @@ class RunClass:
         self.images_path = os.path.join(self.file_path, "images")
         self.save_path = None
 
-        self.search = NYSearch(self.driver, self.query, self.subject)
+        self.search = NYSearch(driver, self.query, self.subject)
         self.directory = directory(self.query)
         self.scrap_all = scrap_all(self.driver)
         self.scrap_each = scrap_each(self.driver)
