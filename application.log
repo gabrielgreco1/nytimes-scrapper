@@ -21,3 +21,10 @@
 2024-03-27 21:34:21 - app.run - INFO - Starting the automation.
 2024-03-27 21:34:21 - app.run - INFO - Creating directories...
 2024-03-27 21:34:21 - app.search - INFO - Initiating search with query 'gas price' and subject 'Any'.
+2024-03-27 21:45:00 - WDM - INFO - ====== WebDriver manager ======
+2024-03-27 21:45:02 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2024-03-27 21:45:03 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2024-03-27 21:45:04 - WDM - INFO - Driver [C:\Users\gabri\.wdm\drivers\chromedriver\win64\123.0.6312.86\chromedriver-win32/chromedriver.exe] found in cache
+2024-03-27 21:45:05 - app.run - INFO - Starting the automation.
+2024-03-27 21:45:05 - app.run - INFO - Creating directories...
+2024-03-27 21:45:05 - app.search - INFO - Initiating search with query 'gas price' and subject 'Any'.

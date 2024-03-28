@@ -1,0 +1,297 @@
+V 0.0.4
+T 2024-03-27T23:09:30.848+00:00
+ID 1|1138b175-ec8f-11ee-a326-70d8234dbf79
+I "sys.platform=win32"
+I "python=3.10.12 | packaged by conda-forge | (main, Jun 23 2023, 22:34:57) [MSC v.1936 64 bit (AMD64)]"
+M a:"driver.py - driverSettings"
+SR a|0.005
+M c:"Collect tasks"
+M d:"setup"
+M e:""
+P b:c|d|e|e|0
+ST b|0.005
+M f:"regular"
+M g:"\nCollecting task driverSettings from: c:\\Users\\gabri\\Desktop\\t\\rpa\\rpaChallenge\\infra\\driver.py\n"
+C f|g|0.006
+M h:"PASS"
+ET h|e|4.415
+M j:"driverSettings"
+M k:"driver"
+M l:"c:\\Users\\gabri\\Desktop\\t\\rpa\\rpaChallenge\\infra\\driver.py"
+M m:null
+P i:j|k|l|m|8
+ST i|4.416
+M n:"=========================== "
+C f|n|4.416
+M o:"Running: "
+C f|o|4.417
+M p:"task_name"
+C p|j|4.418
+M q:" ============================\n"
+C f|q|4.418
+M r:"METHOD"
+SE i|r|4.419
+M t:"ChromiumOptions.__init__"
+M u:"selenium.webdriver.chromium.options"
+M v:"c:\\ProgramData\\robocorp\\ht\\a6c53a7_b1f3c24_691db988\\lib\\site-packages\\selenium\\webdriver\\chromium\\options.py"
+P s:t|u|v|e|31
+SE s|r|4.42
+EE r|h|4.42
+P w:j|k|l|e|9
+M x:"chrome_options"
+M y:"Options"
+M z:"<selenium.webdriver.chrome.options.Options object at 0x000001F4233B5FF0>"
+AS w|x|y|z|4.42
+M B:"ArgOptions.add_argument"
+M C:"selenium.webdriver.common.options"
+M D:"c:\\ProgramData\\robocorp\\ht\\a6c53a7_b1f3c24_691db988\\lib\\site-packages\\selenium\\webdriver\\common\\options.py"
+P A:B|C|D|e|404
+SE A|r|4.42
+M E:"argument"
+M F:"str"
+M G:"'--no-sandbox'"
+EA E|F|G
+EE r|h|4.42
+SE A|r|4.421
+M H:"'--disable-extensions'"
+EA E|F|H
+EE r|h|4.421
+SE A|r|4.421
+M I:"'--disable-gpu'"
+EA E|F|I
+EE r|h|4.421
+M K:"ChromeDriverManager.__init__"
+M L:"webdriver_manager.chrome"
+M M:"c:\\ProgramData\\robocorp\\ht\\a6c53a7_b1f3c24_691db988\\lib\\site-packages\\webdriver_manager\\chrome.py"
+P J:K|L|M|e|12
+SE J|r|4.421
+M N:"driver_version"
+M O:"NoneType"
+M P:"None"
+EA N|O|P
+M Q:"name"
+M R:"'chromedriver'"
+EA Q|F|R
+M S:"url"
+M T:"'https://chromedriver.storage.googleapis.com'"
+EA S|F|T
+M U:"latest_release_url"
+M V:"'https://chromedriver.storage.googleapis.com/LATEST_RELEASE'"
+EA U|F|V
+M W:"chrome_type"
+M X:"'google-chrome'"
+EA W|F|X
+M Y:"download_manager"
+EA Y|O|P
+M Z:"cache_manager"
+EA Z|O|P
+M 0:"os_system_manager"
+EA 0|O|P
+EE r|h|4.422
+M 2:"ChromeDriverManager.install"
+P 1:2|L|M|e|39
+SE 1|r|4.422
+P 3:2|L|M|e|42
+M 4:"'C:\\\\Users\\\\gabri\\\\.wdm\\\\drivers\\\\chromedriver\\\\win64\\\\123.0.6312.86\\\\chromedriver-win32/chromedriver.exe'"
+R 3|F|4|7.413
+EE r|h|7.413
+M 6:"Service.__init__"
+M 7:"selenium.webdriver.chrome.service"
+M 8:"c:\\ProgramData\\robocorp\\ht\\a6c53a7_b1f3c24_691db988\\lib\\site-packages\\selenium\\webdriver\\chrome\\service.py"
+P 5:6|7|8|e|34
+SE 5|r|7.414
+M 9:"executable_path"
+EA 9|F|4
+M aa:"port"
+M ab:"int"
+M ac:"0"
+EA aa|ab|ac
+M ad:"service_args"
+EA ad|O|P
+M ae:"log_output"
+EA ae|O|P
+M af:"env"
+EA af|O|P
+M ag:"kwargs"
+M ah:"dict"
+M ai:"{}"
+EA ag|ah|ai
+EE r|h|7.415
+M ak:"WebDriver.__init__"
+M al:"selenium.webdriver.chrome.webdriver"
+M am:"c:\\ProgramData\\robocorp\\ht\\a6c53a7_b1f3c24_691db988\\lib\\site-packages\\selenium\\webdriver\\chrome\\webdriver.py"
+P aj:ak|al|am|e|28
+SE aj|r|7.415
+M an:"options"
+EA an|y|z
+M ao:"service"
+M ap:"Service"
+M aq:"<selenium.webdriver.chrome.service.Service object at 0x000001F4233AC790>"
+EA ao|ap|aq
+M ar:"keep_alive"
+M as:"bool"
+M at:"True"
+EA ar|as|at
+EE r|h|8.919
+P au:j|k|l|e|18
+M av:"WebDriver"
+M aw:"<selenium.webdriver.chrome.webdriver.WebDriver (session=\"7f5debf0b6665c0937d90d72f3c7f908\")>"
+AS au|k|av|aw|8.919
+P ax:j|k|l|e|19
+R ax|av|aw|8.919
+EE r|h|8.919
+C p|j|8.92
+M ay:" status: "
+C f|ay|8.921
+M az:"PASS\n"
+C f|az|8.921
+M aA:"================================================================================\n"
+C f|aA|8.921
+ET h|e|8.922
+M aC:"Teardown tasks"
+M aD:"teardown"
+P aB:aC|aD|e|e|0
+ST aB|8.922
+M aE:"Process snapshot"
+SPS aE|8.923
+M aF:"System information:\nMemory: Total: 15.7 G, Available: 1.5 G, Used: 90.4 %\nCPUs: 12"
+P aG:e|e|e|e|0
+L I|aF|aG|0|8.983
+M aH:"Subprocess: chrome.exe (pid: 28772, status: running)\nCommand Line: C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe --type=renderer --user-data-dir=C:\\Users\\gabri\\AppData\\Local\\Temp\\scoped_dir25648_1324651690 --no-appcompat-clear --no-sandbox --enable-automation --enable-logging --log-level=0 --remote-debugging-port=0 --test-type=webdriver --allow-pre-commit-input --disable-gpu-compositing --lang=pt-BR --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1711539173359142 --launch-time-ticks=41806342814 --field-trial-handle=3992,i,15219485492320725666,4702910388339056913,262144 --variations-seed-version --mojo-platform-channel-handle=3980 /prefetch:1\nStarted: 20:09:39\nParent pid: 22352\nResident Set Size: 30.1 M\nVirtual Memory Size: 20.9 M"
+L I|aH|aG|0|9.217
+M aI:"MainThread|Thread ID: 29224 (non daemon)"
+STD aI|9.219
+M aJ:"c:\\ProgramData\\robocorp\\ht\\a6c53a7_b1f3c24_691db988\\lib\\site-packages\\robocorp\\log\\__init__.py"
+M aK:"process_snapshot"
+M aL:"robo_logger.process_snapshot()"
+TBE aJ|270|aK|aL
+M aM:"logger_instances"
+M aN:"{<robocorp.log._robo_logger._RoboLogger object at 0x000001F4233106D0>: 1}"
+TBV aM|ah|aN
+M aO:"robo_logger"
+M aP:"_RoboLogger"
+M aQ:"<robocorp.log._robo_logger._RoboLogger object at 0x000001F4233106D0>"
+TBV aO|aP|aQ
+M aR:"c:\\ProgramData\\robocorp\\ht\\a6c53a7_b1f3c24_691db988\\lib\\site-packages\\robocorp\\log\\_robo_logger.py"
+M aS:"new_func"
+M aT:"return func(self, *args, **kwargs)"
+TBE aR|20|aS|aT
+M aU:"self"
+TBV aU|aP|aQ
+M aV:"args"
+M aW:"tuple"
+M aX:"()"
+TBV aV|aW|aX
+TBV ag|ah|ai
+M aY:"func"
+M aZ:"function"
+M a0:"<function _RoboLogger.process_snapshot at 0x000001F42330B250>"
+TBV aY|aZ|a0
+M a1:"return self._robot_output_impl.process_snapshot(hide_vars)"
+TBE aR|416|aK|a1
+TBV aU|aP|aQ
+M a2:"hide_vars"
+M a3:"False"
+TBV a2|as|a3
+M a4:"c:\\ProgramData\\robocorp\\ht\\a6c53a7_b1f3c24_691db988\\lib\\site-packages\\robocorp\\log\\_robo_output_impl.py"
+M a5:"self._dump_threads(hide_vars)"
+TBE a4|748|aK|a5
+TBV a2|as|a3
+M a6:"log"
+M a7:"module"
+M a8:"<module 'robocorp.log' from 'c:\\\\ProgramData\\\\robocorp\\\\ht\\\\a6c53a7_b1f3c24_691db988\\\\lib\\\\site-packages\\\\robocorp\\\\log\\\\__init__.py'>"
+TBV a6|a7|a8
+M a9:"entry_id"
+M ba:"'ps_0'"
+TBV a9|F|ba
+M bb:"entry_type"
+M bc:"'process_snapshot'"
+TBV bb|F|bc
+M bd:"psutil"
+M be:"<module 'psutil' from 'c:\\\\ProgramData\\\\robocorp\\\\ht\\\\a6c53a7_b1f3c24_691db988\\\\lib\\\\site-packages\\\\psutil\\\\__init__.py'>"
+TBV bd|a7|be
+M bf:"AccessDenied"
+M bg:"type"
+M bh:"<class 'psutil.AccessDenied'>"
+TBV bf|bg|bh
+M bi:"NoSuchProcess"
+M bj:"<class 'psutil.NoSuchProcess'>"
+TBV bi|bg|bj
+M bk:"ZombieProcess"
+M bl:"<class 'psutil.ZombieProcess'>"
+TBV bk|bg|bl
+M bm:"curr_process"
+M bn:"Process"
+M bo:"psutil.Process(pid=23696, name='python.exe', status='running', started='20:09:30')"
+TBV bm|bn|bo
+M bp:"log_info"
+M bq:"<function _RoboOutputImpl.process_snapshot.<locals>.log_info at 0x000001F424260E50>"
+TBV bp|aZ|bq
+M br:"memory_info"
+M bs:"'Total: 15.7 G, Available: 1.5 G, Used: 90.4 %'"
+TBV br|F|bs
+M bt:"child_i"
+M bu:"8"
+TBV bt|ab|bu
+M bv:"child"
+M bw:"psutil.Process(pid=28772, name='chrome.exe', status='running', started='20:09:39')"
+TBV bv|bn|bw
+M bx:"'chrome.exe'"
+TBV Q|F|bx
+M by:"status"
+M bz:"'running'"
+TBV by|F|bz
+M bA:"create_time"
+M bB:"'20:09:39'"
+TBV bA|F|bB
+M bC:"ppid"
+M bD:"'22352'"
+TBV bC|F|bD
+M bE:"cmdline"
+M bF:"'C:\\\\Program Files\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe --type=renderer --user-data-dir=C:\\\\Users\\\\gabri\\\\AppData\\\\Local\\\\Temp\\\\scoped_dir25648_1324651690 --no-appcompat-clear --no-sandbox --enable-automation --enable-logging --log-level=0 --remote-debugging-port=0 --test-type=webdriver --allow-pre-commit-input --disable-gpu-compositing --lang=pt-BR --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1711539173359142 --launch-time-ticks=41806342814 --field-trial-handle=3992,i,15219485492320725666,4702910388339056913,262144 --variations-seed-version --mojo-platform-channel-handle=3980 /prefetch:1'"
+TBV bE|F|bF
+M bG:"rss"
+M bH:"'30.1 M'"
+TBV bG|F|bH
+M bI:"vms"
+M bJ:"'20.9 M'"
+TBV bI|F|bJ
+M bK:"proc_memory_info"
+M bL:"pmem"
+M bM:"pmem(rss=31588352, vms=21962752, num_page_faults=8551, peak_wset=31588352, wset=31588352, peak_paged_pool=734600, paged_pool=718376, peak_nonpaged_pool=19576, nonpaged_pool=19264, pagefile=21962752, peak_pagefile=21962752, private=21962752)"
+TBV bK|bL|bM
+M bN:"message"
+M bO:"'Subprocess: chrome.exe (pid: 28772, status: running)\\nCommand Line: C:\\\\Program Files\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe --type=renderer --user-data-dir=C:\\\\Users\\\\gabri\\\\AppData\\\\Local\\\\Temp\\\\scoped_dir25648_1324651690 --no-appcompat-clear --no-sandbox --enable-automation --enable-logging --log-level=0 --remote-debugging-port=0 --test-type=webdriver --allow-pre-commit-input --disable-gpu-compositing --lang=pt-BR --device-scale-factor=1.5 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1711539173359142 --launch-time-ticks=41806342814 --field-trial-handle=3992,i,15219485492320725666,4702910388339056913,262144 --variations-seed-version --mojo-platform-channel-handle=3980 /prefetch:1\\nStarted: 20:09:39\\nParent pid: 22352\\nResident Set Size: 30.1 M\\nVirtual Memory Size: 20.9 M'"
+TBV bN|F|bO
+M bP:"_RoboOutputImpl"
+M bQ:"<robocorp.log._robo_output_impl._RoboOutputImpl object at 0x000001F423312890>"
+TBV aU|bP|bQ
+M bR:"_dump_threads"
+M bS:"stack.append((f, f.f_lineno))"
+TBE a4|769|bR|bS
+TBV aU|bP|bQ
+TBV a2|as|a3
+M bT:"thread_id"
+M bU:"29224"
+TBV bT|ab|bU
+M bV:"frame"
+M bW:"<frame at 0x000001F424364440, file 'c:\\\\ProgramData\\\\robocorp\\\\ht\\\\a6c53a7_b1f3c24_691db988\\\\lib\\\\site-packages\\\\robocorp\\\\log\\\\_robo_output_impl.py', line 773, code _dump_threads>"
+TBV bV|bV|bW
+M bX:"thread"
+M bY:"_MainThread"
+M bZ:"<_MainThread(MainThread, started 29224)>"
+TBV bX|bY|bZ
+M b0:"title"
+M b1:"'MainThread|Thread ID: 29224 (non daemon)'"
+TBV b0|F|b1
+M b2:"f"
+M b3:"<frame at 0x000001F4211A8410, file 'c:\\\\ProgramData\\\\robocorp\\\\ht\\\\a6c53a7_b1f3c24_691db988\\\\lib\\\\site-packages\\\\robocorp\\\\tasks\\\\_commands.py', line 492, code run>"
+TBV b2|bV|b3
+M b4:"stack"
+M b5:"list"
+M b6:"[(<frame at 0x000001F4242F7C10, file 'c:\\\\ProgramData\\\\robocorp\\\\ht\\\\a6c53a7_b1f3c24_691db988\\\\lib\\\\site-packages\\\\robocorp\\\\log\\\\__init__.py', line 270, code process_snapshot>, 270), (<frame at 0x000001F4231A9A40, file 'c:\\\\ProgramData\\\\robocorp\\\\ht\\\\a6c53a7_b1f3c24_691db988\\\\lib\\\\site-packages\\\\robocorp\\\\log\\\\_robo_logger.py', line 20, code new_func>, 20), (<frame at 0x000001F4242E0520, file 'c:\\\\ProgramData\\\\robocorp\\\\ht\\\\a6c53a7_b1f3c24_691db988\\\\lib\\\\site-packages\\\\robocorp\\\\log\\\\_robo_logger.py', line 416, code process_snapshot>, 416), (<frame at 0x000001F42113E810, file 'c:\\\\ProgramData\\\\robocorp\\\\ht\\\\a6c53a7_b1f3c24_691db988\\\\lib\\\\site-packages\\\\robocorp\\\\log\\\\_robo_output_impl.py', line 748, code process_snapshot>, 748), (<frame at 0x000001F424364440, file 'c:\\\\ProgramData\\\\robocorp\\\\ht\\\\a6c53a7_b1f3c24_691db988\\\\lib\\\\site-packages\\\\robocorp\\\\log\\\\_robo_output_impl.py', line 773, code _dump_threads>, 769)]"
+TBV b4|b5|b6
+ETD 9.241
+EPS 9.241
+ET h|e|9.241
+ER h|9.241
