@@ -28,3 +28,27 @@
 2024-03-27 21:45:05 - app.run - INFO - Starting the automation.
 2024-03-27 21:45:05 - app.run - INFO - Creating directories...
 2024-03-27 21:45:05 - app.search - INFO - Initiating search with query 'gas price' and subject 'Any'.
+2024-03-27 23:53:43 - WDM - INFO - ====== WebDriver manager ======
+2024-03-27 23:53:44 - WDM - INFO - ====== WebDriver manager ======
+2024-03-27 23:53:44 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2024-03-27 23:53:45 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2024-03-27 23:53:45 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2024-03-27 23:53:46 - WDM - INFO - Driver [C:\Users\gabri\.wdm\drivers\chromedriver\win64\123.0.6312.86\chromedriver-win32/chromedriver.exe] found in cache
+2024-03-27 23:53:46 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2024-03-27 23:53:46 - WDM - INFO - Driver [C:\Users\gabri\.wdm\drivers\chromedriver\win64\123.0.6312.86\chromedriver-win32/chromedriver.exe] found in cache
+2024-03-27 23:53:47 - app.run - INFO - Starting the automation.
+2024-03-27 23:53:47 - app.run - INFO - Creating directories...
+2024-03-27 23:53:47 - app.search - INFO - Initiating search with query 'gas price' and subject 'Any'.
+2024-03-27 23:53:48 - app.run - INFO - Starting the automation.
+2024-03-27 23:53:48 - app.run - INFO - Creating directories...
+2024-03-27 23:53:48 - app.search - INFO - Initiating search with query 'gas price' and subject 'Any'.
+2024-03-27 23:54:00 - app.search - INFO - Scrapping 70 news
+2024-03-27 23:54:00 - app.search - INFO - Scrapping 70 news
+2024-03-27 23:54:17 - app.run - INFO - Compiling list of news articles...
+2024-03-27 23:54:17 - app.run - INFO - Compiling list of news articles...
+2024-03-27 23:54:17 - app.run - INFO - Beginning detailed information scraping for each news item.
+2024-03-27 23:54:17 - app.run - INFO - Beginning detailed information scraping for each news item.
+2024-03-27 23:55:05 - app.run - INFO - Data secured at excel file - news.xlsx
+2024-03-27 23:55:05 - app.run - INFO - Automation completed successfully.
+2024-03-27 23:55:05 - app.run - INFO - Data secured at excel file - news.xlsx
+2024-03-27 23:55:05 - app.run - INFO - Automation completed successfully.
