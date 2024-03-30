@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import  TimeoutException, StaleElementReferenceException
 from utils.url import UrlParser  # Supondo que essa parte permaneça inalterada
 
 class NYSearch:
@@ -55,10 +56,10 @@ class NYSearch:
                     EC.element_to_be_clickable((By.XPATH, "//button[@data-testid='search-show-more-button']"))
                 )
                 show_more_button.click()
-            except Exception as e:
-                if "timeout" in str(e).lower():
-                    break
-
+            except TimeoutException:
+                break
+            except StaleElementReferenceException:
+                continue
     def search(self):
         self.logger.info(f"Initiating search with query '{self.query}' and subject '{self.subject}'.")
         self.open_search()
