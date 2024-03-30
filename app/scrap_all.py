@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import  TimeoutException, WebDriverException
+from selenium.common.exceptions import  TimeoutException, WebDriverException, ConnectionRefusedError
 
 class scrap_all:
     def __init__(self, driver)  -> list:
@@ -20,4 +20,7 @@ class scrap_all:
             return []
         except WebDriverException as e:
             print(f"Erro ao interagir com o WebDriver: {e}")
+            return []
+        except ConnectionRefusedError as e:
+            print(f"Erro de conexão: {e}")
             return []
