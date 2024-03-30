@@ -3,6 +3,7 @@
 tasks:
   Run Task:
     shell: python tasks.py
+    outputDir: output/
 
 condaConfigFile: conda.yaml
 
