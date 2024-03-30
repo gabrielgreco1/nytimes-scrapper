@@ -2,9 +2,7 @@
 
 tasks:
   My Robocorp Task:
-    command:
-      - python
-      - tasks.py
+    shell: python -m robocorp.tasks run tasks.py
 
 
 condaConfigFile: conda.yaml
