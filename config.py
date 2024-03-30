@@ -2,4 +2,6 @@
 query = "brazil"
 subject = "Sports"
 months = 3
-path = ".\\output\\Challenge_RPA_PixelDu"
+import os
+from pathlib import Path
+path = Path(os.getenv('ROBOCORP_ARTIFACTS_DIRECTORY', 'output'))
