@@ -4,4 +4,4 @@ subject = "Sports"
 months = 3
 import os
 from pathlib import Path
-path = Path(os.getenv('ROBOCORP_ARTIFACTS_DIRECTORY', 'output'))
+path = Path(os.getenv('ROBOT_ARTIFACTS', 'output'))
