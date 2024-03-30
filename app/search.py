@@ -1,55 +1,59 @@
 import re
 import logging
 import time
-from RPA.Browser.Selenium import Selenium
-from utils.url import UrlParser
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from utils.url import UrlParser  # Supondo que essa parte permaneça inalterada
 
 class NYSearch:
     def __init__(self, driver, query, subject):
         self.logger = logging.getLogger(__name__)
-        self.browser = driver
+        self.driver = driver
         self.query = query
         self.subject = subject
         self.quantity = 0
         self.url = UrlParser(self.query)
 
     def open_search(self):
-        self.browser.go_to(self.url.construct_url())
-
+        self.driver.get(self.url.construct_url())
 
     def news_quantity(self):
-        element_text = self.browser.get_text("xpath=//*[@id='site-content']/div/div[1]/div[1]/p")
+        element_text = WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='site-content']/div/div[1]/div[1]/p"))
+        ).text
         matches = re.findall(r'\d+', element_text)
-        return matches[0]
+        return matches[0] if matches else "0"
 
     def select_subject(self):
-
         time.sleep(2)
-        # Aguarda e clica no botão de cookies
-        self.browser.wait_until_element_is_visible("xpath=//*[@id='fides-banner-button-primary']", timeout=20)
-        self.browser.click_element("xpath=//*[@id='fides-banner-button-primary']")
+        WebDriverWait(self.driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, "//*[@id='fides-banner-button-primary']"))
+        ).click()
 
-        # Aguarda e clica no botão para revelar opções
-        self.browser.wait_until_element_is_visible("xpath=//button[@data-testid='search-multiselect-button']", timeout=10)
-        self.browser.click_element("xpath=//button[@data-testid='search-multiselect-button']")
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//button[@data-testid='search-multiselect-button']"))
+        ).click()
 
-        options_labels = self.browser.find_elements("xpath=//ul[@data-testid='multi-select-dropdown-list']/li//span[@class='css-16eo56s']")
+        options_labels = self.driver.find_elements(By.XPATH, "//ul[@data-testid='multi-select-dropdown-list']/li//span[@class='css-16eo56s']")
         
         for option_label in options_labels:
-            option_text = self.browser.get_text(option_label).strip()
+            option_text = option_label.text.strip()
             match = re.match(r"([a-zA-Z]+)", option_text)
             if match:
                 clean_option_text = match.group(1)
                 if clean_option_text.lower() == self.subject.lower():
-                    option_input = self.browser.find_element(f"xpath=//span[contains(text(), '{clean_option_text}')]/ancestor::li//input[@type='checkbox']")
-                    self.browser.click_element(option_input)
+                    option_input = option_label.find_element(By.XPATH, "./ancestor::li//input[@type='checkbox']")
+                    option_input.click()
                     break
 
     def click_show_more(self):
         while True:
             try:
-                self.browser.wait_until_element_is_visible("xpath=//button[@data-testid='search-show-more-button']", timeout=10)
-                self.browser.click_element("xpath=//button[@data-testid='search-show-more-button']")
+                show_more_button = WebDriverWait(self.driver, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, "//button[@data-testid='search-show-more-button']"))
+                )
+                show_more_button.click()
             except Exception as e:
                 if "timeout" in str(e).lower():
                     break
@@ -61,9 +65,4 @@ class NYSearch:
         self.quantity = self.news_quantity()
         self.logger.info(f"Scraping {self.quantity} news")
         self.click_show_more()
-
-        # Don't forget to close the browser at the end of your script
-        self.browser.close_browser()
-
-# You should initialize the UrlParser and pass it the query parameter according to your specific implementation
-# Don't forget to initialize the logging system before using it
+        self.driver.quit()
