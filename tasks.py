@@ -1,7 +1,4 @@
-from infra.logging_config import setup_logging
 from robocorp.tasks import task
-setup_logging()
-
 from app.run import RunClass
 from infra.driver import driver
 import config
