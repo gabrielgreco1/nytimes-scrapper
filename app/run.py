@@ -33,7 +33,6 @@ class RunClass:
         self.downloads = downloads()
         self.save = save(self.excel_path)
 
-    @task
     def run_search(self):
         self.logger.info("Starting the automation.")
 
