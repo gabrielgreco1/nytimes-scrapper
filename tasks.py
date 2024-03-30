@@ -55,6 +55,7 @@ class RunClass:
         
         self.logger.info("Beginning detailed information scraping for each news item.")
         try:
+            print("Scrapping each item")
             for item in list_items:
                 # Scrape details for each item
                 data = self.scrap_each.scrape_item_details(item)

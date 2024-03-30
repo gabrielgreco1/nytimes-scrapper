@@ -13,6 +13,7 @@ class scrap_all:
     def scrape_list_items(self):
         try:
             self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "ol")))
+            print('List all items.............')
             # Fetch all list items
             list_items = self.driver.find_elements(By.CSS_SELECTOR, "ol > li")
             return list_items
