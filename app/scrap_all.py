@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-
+from selenium.common.exceptions import  TimeoutException, WebDriverException
 
 class scrap_all:
     def __init__(self, driver)  -> list:
@@ -17,4 +17,7 @@ class scrap_all:
             list_items = self.driver.find_elements(By.CSS_SELECTOR, "ol > li")
             return list_items
         except TimeoutError:
+            return []
+        except WebDriverException as e:
+            print(f"Erro ao interagir com o WebDriver: {e}")
             return []
