@@ -10,20 +10,17 @@ from domain.phrase_count import phrase_counter
 from app.scrap_all import scrap_all
 from app.scrap_each import scrap_each
 from app.search import NYSearch
+from infra.logging_config import log_info, log_warning
 from robocorp.tasks import task
 
 
 class RunClass:
     def __init__(self, driver, query, subject):
-        self.logger = logging.getLogger(__name__)
         self.driver = driver
         self.query = query
         self.subject = subject
-
-        self.file_path = f"{config.path}\\{self.query}"
-        self.file_path = self.file_path.replace(" ","_")
-        self.excel_path = os.path.join(self.file_path, "news.xlsx")
-        self.images_path = os.path.join(self.file_path, "images")
+        self.excel_path = os.path.join("output", "news.xlsx")
+        self.images_path = os.path.join("output")
         self.save_path = None
 
         self.search = NYSearch(driver, self.query, self.subject)
@@ -34,21 +31,18 @@ class RunClass:
         self.save = save(self.excel_path)
 
     def run_search(self):
-        self.logger.info("Starting the automation.")
+        log_info("Starting the automation.")
 
-        # Create directory
-        self.logger.info("Creating directories...")
-        self.directory.create_directory()
-        
         # Start the search
         self.search.search()
 
         # Scrape all list items
-        self.logger.info("Compiling list of news articles...")
+        log_info("Compiling list of news articles...")
         list_items = self.scrap_all.scrape_list_items()
         
-        self.logger.info("Beginning detailed information scraping for each news item.")
+        log_info("Beginning detailed information scraping for each news item.")
         try:
+            log_info("Scrapping each item")
             for item in list_items:
                 # Scrape details for each item
                 data = self.scrap_each.scrape_item_details(item)
@@ -63,8 +57,8 @@ class RunClass:
                     data["newsData"]["phraseCounter"] = phrase_counter.count_query_in_data(data, self.query)
                     self.save.save_to_xlsx(data)
         finally:
-            self.logger.info(f"Data secured at excel file - news.xlsx") 
-                
-        self.logger.info("Automation completed successfully.")      
+            log_info(f"Data secured at excel file - news.xlsx") 
+
+        log_info("Automation completed successfully.")      
         self.driver.quit()
         return []

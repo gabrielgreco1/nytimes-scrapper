@@ -34,8 +34,7 @@ class scrap_each:
         self.newsData["date"] = self.date
         self.newsData["paragraphs"] = self.description
         self.newsData["links"] = self.links
-
-
+        
         # Returning a Dict with the scrapped info 
         return {
             "newsData": self.newsData,
