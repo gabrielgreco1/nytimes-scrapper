@@ -12,7 +12,7 @@ ny_search = RunClass(driver1, config.query, config.subject)
 def run_task():
     ny_search.run_search()
     items = workitems.inputs.current
-    print("Received payload:", item.payload)
+    print("Received payload:", items.payload)
     workitems.outputs.create(payload={"key": "value"})
     for item in items:
         if 'query' in item.payload:
