@@ -11,13 +11,16 @@ ny_search = RunClass(driver1, config.query, config.subject)
 @task
 def run_task():
     ny_search.run_search()
-    items = workitems.inputs.current
-    print("Received payload:", items.payload)
+    item = workitems.inputs.current  # Isso atribui o item de entrada atual a 'item'
+    print("Received payload:", item.payload)
+
+    # Verifica se a chave 'query' está no payload do item atual
+    if 'query' in item.payload:
+        query = item.payload['query']
+        print('...................................', query)
+    
+    # Continua com a criação do output
     workitems.outputs.create(payload={"key": "value"})
-    for item in items:
-        if 'query' in item.payload:
-            query = item.payload['query']
-            print('...................................', query)
 
 # def workitems():
 #     for item in workitems.inputs:
