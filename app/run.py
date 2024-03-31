@@ -38,14 +38,14 @@ class RunClass:
         # Scrape all list items
         log_info("Compiling list of news articles...")
         list_items = self.scrap_all.scrape_list_items()
-        
-        log_info("Beginning detailed information scraping for each news item.")
+
+        # Scrape details for each item and save to excel 
         try:
             log_info("Scrapping each item")
             for item in list_items:
-                # Scrape details for each item
                 data = self.scrap_each.scrape_item_details(item)
                 if data:
+                    # Saving images for each news
                     for url in data["imageUrls"]:
                         filename = f'{data["newsData"]["headings"]}.jpg'
                         filename = re.sub(r'[\\/:*?"<>|\[\]]', "", filename)
@@ -54,7 +54,7 @@ class RunClass:
                     data["newsData"]["savePath"] = self.save_path
                     data["newsData"]["containsMoney"] = moneychecker.check_data_for_money(data)
                     data["newsData"]["phraseCounter"] = phrase_counter.count_query_in_data(data, self.query)
-                    self.save.save_to_xlsx(data)
+                    self.save.save_to_xlsx(data) # Saving to XLSX
         finally:
             log_info(f"Data secured at excel file - news.xlsx") 
 

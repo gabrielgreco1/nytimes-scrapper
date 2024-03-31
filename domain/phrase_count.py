@@ -3,7 +3,7 @@ import re
 class phrase_counter: 
     @staticmethod
     def count_query_occurrences(text, query):
-        # Counts how many times the query appears in the text
+        # Counts how many times the query appears in the selected text
         return len(re.findall(re.escape(query), text, re.IGNORECASE))
 
     @classmethod
