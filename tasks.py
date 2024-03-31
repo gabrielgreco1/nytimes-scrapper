@@ -26,10 +26,10 @@ class RunClass:
         self.query = query
         self.subject = subject
 
-        self.file_path = f"{config.path}/{self.query}"
-        self.file_path = self.file_path.replace(" ","_")
-        self.excel_path = os.path.join(self.file_path, "news.xlsx")
-        self.images_path = os.path.join(self.file_path, "images")
+        # self.file_path = f"{config.path}/{self.query}"
+        # self.file_path = self.file_path.replace(" ","_")
+        self.excel_path = os.path.join("output", "news.xlsx")
+        self.images_path = os.path.join("output", "images")
         self.save_path = None
 
         self.search = NYSearch(driver, self.query, self.subject)
