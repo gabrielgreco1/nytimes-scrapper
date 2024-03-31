@@ -19,6 +19,7 @@ class RunClass:
         self.driver = driver
         self.query = query
         self.subject = subject
+        self.file_path = config.path
         self.excel_path = os.path.join("output", "news.xlsx")
         self.images_path = os.path.join("output")
         self.save_path = None
