@@ -3,9 +3,10 @@ import os
 
 class save:
     def __init__(self, excel_path):
+        self.verify_link = True
         self.excel_path = excel_path
-        
-    def save_to_xlsx(self, data):
+    
+    def clean_data(self, data):
         # Sets the base text of the unwanted link for checking
         undesired_links_texts = [
                                 "https://www.nytimes.com/search?dropmab=false",
@@ -13,8 +14,15 @@ class save:
         ]        
         # Checks if any link in the list contains the base text
         if any(any(base_text in link for base_text in undesired_links_texts) for link in data["newsData"]["links"]):
+            return False
+        else:
+            return True
+        
+    def save_to_xlsx(self, data):
+
+        self.verify_link = self.clean_data(data)
+        if self.verify_link == False:
             return
-                
         # Unpack the data
         news_data = data["newsData"]
         image_urls = data["imageUrls"]
