@@ -13,3 +13,10 @@ class directory:
         if not os.path.exists(directory_path):
             os.makedirs(directory_path)
 
+        print(f"Artifacts directory: {directory_path.absolute()}")
+
+        # Verifica se o diretório existe e cria se não existir.
+        if not directory_path.exists():
+            print(f"Directory {directory_path.absolute()} does not exist. Creating it.")
+            directory_path.mkdir(parents=True, exist_ok=True)
+
