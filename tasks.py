@@ -11,6 +11,19 @@ ny_search = RunClass(driver1, config.query, config.subject)
 @task
 def run_task():
     ny_search.run_search()
-    item = workitems.inputs.current
-    print("Received payload:", item.payload)
-    workitems.outputs.create(payload={"key": "value"})
+    for item in workitems.inputs:
+        print("Received payload:", item.payload)
+        workitems.outputs.create(payload={"key": "value"})
+
+def workitems():
+    for item in workitems.inputs:
+        print("Received payload:", item.payload)
+    
+        # Verifica se a chave 'query' existe no payload
+        if 'query' in item.payload:
+            query = item.payload['query']
+            print("A query é:", query)
+    
+        # Seu código existente para criar outputs
+        workitems.outputs.create(payload={"key": "value"})
+
