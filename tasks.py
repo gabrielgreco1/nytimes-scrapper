@@ -29,7 +29,7 @@ class RunClass:
         # self.file_path = f"{config.path}/{self.query}"
         # self.file_path = self.file_path.replace(" ","_")
         self.excel_path = os.path.join("output", "news.xlsx")
-        self.images_path = os.path.join("output", "images")
+        self.images_path = os.path.join("output")
         self.save_path = None
 
         self.search = NYSearch(driver, self.query, self.subject)
@@ -42,9 +42,9 @@ class RunClass:
     def run_search(self):
         self.logger.info("Starting the automation.")
 
-    # Create directory
-        self.logger.info("Creating directories...")
-        self.directory.create_directory()
+    # # Create directory
+    #     self.logger.info("Creating directories...")
+    #     self.directory.create_directory()
     
     # Start the search
         self.search.search()
