@@ -3,5 +3,5 @@ from pathlib import Path
 
 query = "brazil"
 subject = "Sports"
-months = 6
+months = 1
 path = Path('output')
