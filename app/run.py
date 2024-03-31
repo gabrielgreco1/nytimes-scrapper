@@ -1,7 +1,3 @@
-import logging
-import config
-import re 
-import os
 from utils.directory import directory
 from infra.download_image import downloads
 from domain.save_data import save
@@ -10,8 +6,10 @@ from domain.phrase_count import phrase_counter
 from app.scrap_all import scrap_all
 from app.scrap_each import scrap_each
 from app.search import NYSearch
-from infra.logging_config import log_info, log_warning
-from robocorp.tasks import task
+from infra.logging_config import log_info
+import config
+import re 
+import os
 
 
 class RunClass:

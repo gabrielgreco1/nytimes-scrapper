@@ -1,12 +1,11 @@
-import re
-import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import  TimeoutException, StaleElementReferenceException, NoSuchElementException
 from utils.url import UrlParser  
 from infra.logging_config import log_info, log_warning, log_error
+import re
+import time
 
 class NYSearch:
     def __init__(self, driver, query, subject):
