@@ -6,11 +6,9 @@ import config
 
 driver_class = driver()
 driver1 = driver_class.set_webdriver()
-ny_search = RunClass(driver1, config.query, config.subject)
 
 @task
 def run_task():
-    ny_search.run_search()
     item = workitems.inputs.current  # Isso atribui o item de entrada atual a 'item'
     print("Received payload:", item.payload)
 
@@ -18,9 +16,15 @@ def run_task():
     if 'query' in item.payload:
         query = item.payload['query']
         print('...................................', query)
+    if 'subject' in item.payload:
+        subject = item.payload['subject']
+        print('...................................', subject)
     
     # Continua com a criação do output
     workitems.outputs.create(payload={"key": "value"})
+    ny_search = RunClass(driver1, query, subject)
+    ny_search.run_search()
+
 
 # def workitems():
 #     for item in workitems.inputs:
