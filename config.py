@@ -4,4 +4,4 @@ subject = "Any"
 months = 1
 import os
 from pathlib import Path
-path = Path(os.getenv('ROBOT_ARTIFACTS', 'output'))
+path = Path('output')

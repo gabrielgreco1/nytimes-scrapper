@@ -2,7 +2,7 @@ from robocorp.tasks import task
 from app.run import RunClass
 from infra.driver import driver
 import config
-from pathlib import Path
+
 
 import logging
 import config
@@ -82,14 +82,4 @@ ny_search = RunClass(driver1, config.query, config.subject)
 @task
 def run_task():
     print("Starting..................................")
-    # Define o diretório de saída, assumindo que este código está sendo executado no Robocorp Cloud
-    output_dir = Path('./output')
-    output_dir.mkdir(exist_ok=True)  # Cria o diretório se não existir
-
-    # Caminho para os arquivos que serão criados
-    txt_file_path = output_dir / 'test.txt'
-
-    # Cria e escreve no arquivo txt
-    with open(txt_file_path, 'w') as txt_file:
-        txt_file.write('Este é um exemplo de arquivo de texto.\n')
     ny_search.run_search()
