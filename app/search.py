@@ -67,4 +67,3 @@ class NYSearch:
         self.quantity = self.news_quantity()
         self.logger.info(f"Scraping {self.quantity} news")
         self.click_show_more()
-        self.driver.quit()

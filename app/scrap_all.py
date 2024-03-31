@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import  TimeoutException, WebDriverException
 
 class scrap_all:
-    def __init__(self, driver)  -> list:
+    def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 10)
 
@@ -13,7 +13,7 @@ class scrap_all:
     def scrape_list_items(self):
         try:
             print('List OL..................')
-            # self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "ol")))
+            self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "ol")))
             print('List LI..................')
             # Fetch all list items
             list_items = self.driver.find_elements(By.CSS_SELECTOR, "ol > li")
