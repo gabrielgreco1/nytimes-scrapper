@@ -1,7 +1,7 @@
 # config.py
 from pathlib import Path
 
-query = "brazil"
-subject = "Sports"
+query = "spain"
+subject = "Food"
 months = 1
 path = Path('output')
