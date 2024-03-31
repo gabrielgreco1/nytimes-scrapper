@@ -26,7 +26,7 @@ class RunClass:
         self.query = query
         self.subject = subject
 
-        self.file_path = f"{config.path}\\{self.query}"
+        self.file_path = f"{config.path}/{self.query}"
         self.file_path = self.file_path.replace(" ","_")
         self.excel_path = os.path.join(self.file_path, "news.xlsx")
         self.images_path = os.path.join(self.file_path, "images")

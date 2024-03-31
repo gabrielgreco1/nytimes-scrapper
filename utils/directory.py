@@ -5,7 +5,7 @@ class directory:
     def __init__(self, query):
         self.query = query.replace(" ", "_")
         self.file_path = os.path.join(config.path, self.query)
-        self.images_path = f"{self.file_path}\\images\\"
+        self.images_path = f"{self.file_path}/images/"
 
     # Creating Directory if it already doesn't exist 
     def create_directory(self):
