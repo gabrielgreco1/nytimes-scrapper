@@ -87,10 +87,10 @@ class NYSearch:
             log_info(f"Initiating search with query '{self.query}' and subject '{self.subject}' for the past {self.months} months.")
             self.open_search()
             self.select_subject()
-            
+
             # Get quantity
             self.quantity = self.news_quantity()
-            self.logger.info(f"Scrapping {self.quantity} news")
+            log_info(f"Scrapping {self.quantity} news")
 
             self.click_show_more()
         except Exception as e:
