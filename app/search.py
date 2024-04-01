@@ -86,7 +86,7 @@ class NYSearch:
     # Performs the search and handles the sequence of actions
     def search(self):
         try:
-            log_info(f"Initiating search with query '{self.query}' and subject '{self.subject}'.")
+            log_info(f"Initiating search with query '{self.query}' and subject '{self.subject}' for the past {self.months} months.")
             self.open_search()
             self.select_subject()
             self.news_quantity()
