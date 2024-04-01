@@ -19,22 +19,10 @@ def run_task():
     if 'subject' in item.payload:
         subject = item.payload['subject']
         print('...................................', subject)
+    if 'months' in item.payload:
+        months = item.payload['months']
     
     # Continua com a criação do output
     workitems.outputs.create(payload={"key": "value"})
-    ny_search = RunClass(driver1, query, subject)
+    ny_search = RunClass(driver1, query, subject, months)
     ny_search.run_search()
-
-
-# def workitems():
-#     for item in workitems.inputs:
-#         print("Received payload:", item.payload)
-    
-#         # Verifica se a chave 'query' existe no payload
-#         if 'query' in item.payload:
-#             query = item.payload['query']
-#             print("A query é:", query)
-    
-#         # Seu código existente para criar outputs
-#         workitems.outputs.create(payload={"key": "value"})
-

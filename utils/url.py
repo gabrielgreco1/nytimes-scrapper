@@ -3,9 +3,9 @@ from utils.date import date_formatting
 import config
 
 class UrlParser:
-    def __init__(self, query):
+    def __init__(self, query, months):
             self.query = query
-            self.months = config.months
+            self.months = months
             self.formatted_endDate, self.formatted_startDate = date_formatting.calculate_dates(self.months)
 
     # Encoding URL

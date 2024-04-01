@@ -8,12 +8,13 @@ import re
 import time
 
 class NYSearch:
-    def __init__(self, driver, query, subject):
+    def __init__(self, driver, query, subject, months):
         self.driver = driver
         self.query = query
         self.subject = subject
+        self.months = months
         self.quantity = 0
-        self.url = UrlParser(self.query)
+        self.url = UrlParser(self.query, self.months)
 
     # Opens the search page
     def open_search(self):
