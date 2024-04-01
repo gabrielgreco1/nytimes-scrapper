@@ -19,12 +19,5 @@ class driver:
 
     def set_webdriver(self, browser="Chrome"):
         options = self.set_chrome_options()
-        # executable_driver_path = cache(browser)
-        # if not executable_driver_path:
-        #     executable_driver_path = download(browser)
-        #     self.logger.warning("Using downloaded driver: %s" % executable_driver_path)
-        # else:
-        #     self.logger.warning("Using cached driver: %s" % executable_driver_path)
-
         self.driver = start("Chrome", options=options)
         return self.driver

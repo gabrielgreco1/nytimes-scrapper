@@ -41,7 +41,7 @@ class RunClass:
 
         # Scrape details for each item and save to excel 
         try:
-            log_info("Scrapping each item")
+            log_info("Scrapping each item.")
             for item in list_items:
                 data = self.scrap_each.scrape_item_details(item)
                 if data:
