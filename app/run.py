@@ -13,16 +13,17 @@ import os
 
 
 class RunClass:
-    def __init__(self, driver, query, subject):
+    def __init__(self, driver, query, subject, months):
         self.driver = driver
         self.query = query
         self.subject = subject
+        self.months = months
         self.file_path = config.path
         self.excel_path = os.path.join("output", "news.xlsx")
         self.images_path = os.path.join("output")
         self.save_path = None
 
-        self.search = NYSearch(driver, self.query, self.subject)
+        self.search = NYSearch(driver, self.query, self.subject, self.months)
         self.directory = directory(self.query)
         self.scrap_all = scrap_all(self.driver)
         self.scrap_each = scrap_each(self.driver)
