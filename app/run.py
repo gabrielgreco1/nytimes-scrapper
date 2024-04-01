@@ -23,7 +23,7 @@ class RunClass:
         self.images_path = os.path.join("output")
         self.save_path = None
 
-        self.search = NYSearch(driver, self.query, self.subject, self.months)
+        self.search = NYSearch(self.driver, self.query, self.subject, self.months)
         self.scrap_all = scrap_all(self.driver)
         self.scrap_each = scrap_each(self.driver)
         self.downloads = downloads()
@@ -45,19 +45,18 @@ class RunClass:
             for item in list_items:
                 data = self.scrap_each.scrape_item_details(item)
                 if data:
+                    data["newsData"]["savePath"] = self.save_path
+                    data["newsData"]["containsMoney"] = moneychecker.check_data_for_money(data)
+                    data["newsData"]["phraseCounter"] = phrase_counter.count_query_in_data(data, self.query)
+                    self.save.save_to_xlsx(data) # Saving to XLSX
                     # Saving images for each news
                     for url in data["imageUrls"]:
                         filename = f'{data["newsData"]["headings"]}.jpg'
                         filename = re.sub(r'[\\/:*?"<>|\[\]]', "", filename)
                         self.save_path = os.path.join(self.images_path, filename)
                         downloads.download_image(url, self.save_path)
-                    data["newsData"]["savePath"] = self.save_path
-                    data["newsData"]["containsMoney"] = moneychecker.check_data_for_money(data)
-                    data["newsData"]["phraseCounter"] = phrase_counter.count_query_in_data(data, self.query)
-                    self.save.save_to_xlsx(data) # Saving to XLSX
         finally:
             log_info(f"Data secured at excel file - news.xlsx") 
-
         log_info("Automation completed successfully.")      
         self.driver.quit()
         return []
