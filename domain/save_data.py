@@ -26,7 +26,7 @@ class save:
         # Unpack the data
         news_data = data["newsData"]
         image_urls = data["imageUrls"]
-        contains_money = 'T' if data["newsData"]["containsMoney"] else 'F'
+        contains_money = 'True' if data["newsData"]["containsMoney"] else 'False'
         
         # Selects the second paragraph of "paragraphs" as specified
         selected_paragraph = news_data["paragraphs"][1] if len(news_data["paragraphs"]) > 1 else None

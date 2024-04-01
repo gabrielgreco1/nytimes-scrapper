@@ -27,13 +27,11 @@ class NYSearch:
     # Retrieves the quantity of news items found
     def news_quantity(self):
         try:
-            element_text = WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((By.XPATH, "//*[@id='site-content']/div/div[1]/div[1]/p"))
-            ).text
-            matches = re.findall(r'\d+', element_text)
-            quantity = matches[0] if matches else "0"
-            log_info(f"Number of news items found: {quantity}")
-            return quantity
+            element = self.driver.find_elements(By.XPATH, """//*[@id="site-content"]/div/div[1]/div[1]/p""")
+            element_text = element[0].text
+            element_list = element_text.split("\n")
+            matches = re.findall(r'\d+', element_list[0])
+            return matches[0]
         except TimeoutException:
             log_error("Timeout occurred while trying to find the number of news articles.")
         except NoSuchElementException:
@@ -89,7 +87,11 @@ class NYSearch:
             log_info(f"Initiating search with query '{self.query}' and subject '{self.subject}' for the past {self.months} months.")
             self.open_search()
             self.select_subject()
-            self.news_quantity()
+            
+            # Get quantity
+            self.quantity = self.news_quantity()
+            self.logger.info(f"Scrapping {self.quantity} news")
+
             self.click_show_more()
         except Exception as e:
             log_error(f"An unexpected error occurred during the search: {e}")
