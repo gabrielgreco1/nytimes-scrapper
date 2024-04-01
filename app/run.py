@@ -24,7 +24,6 @@ class RunClass:
         self.save_path = None
 
         self.search = NYSearch(driver, self.query, self.subject, self.months)
-        self.directory = directory(self.query)
         self.scrap_all = scrap_all(self.driver)
         self.scrap_each = scrap_each(self.driver)
         self.downloads = downloads()

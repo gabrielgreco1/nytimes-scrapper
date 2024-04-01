@@ -71,6 +71,7 @@ class NYSearch:
     def click_show_more(self):
         while True:
             try:
+                time.sleep(5)
                 show_more_button = WebDriverWait(self.driver, 10).until(
                     EC.element_to_be_clickable((By.XPATH, "//button[@data-testid='search-show-more-button']"))
                 )
