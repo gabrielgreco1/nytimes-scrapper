@@ -15,6 +15,7 @@ class NYSearch:
         self.months = months
         self.quantity = 0
         self.url = UrlParser(self.query, self.months)
+        self.verify = False
 
     # Opens the search page
     def open_search(self):
@@ -63,13 +64,13 @@ class NYSearch:
                         option_input = option_label.find_element(By.XPATH, "./ancestor::li//input[@type='checkbox']")
                         option_input.click()
                         log_info(f"Subject '{self.subject}' selected.")
-                        break
-                    else:
-                        log_warning(f"Subject '{self.subject}' not found. Selecting 'Any' by default")
-                        break
-                    
+                        self.verify = True
+                        break  
         except TimeoutException:
             log_warning("Timeout occurred while trying to select the subject.")
+        finally:
+            if not self.verify:
+                log_warning(f"Subject '{self.subject}' not found. Selecting 'Any' by default")  
 
     # Clicks the 'Show More' button to load more news items
     def click_show_more(self):
