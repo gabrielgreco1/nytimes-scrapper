@@ -53,17 +53,17 @@ class NYSearch:
             ).click()
 
             options_labels = self.driver.find_elements(By.XPATH, "//ul[@data-testid='multi-select-dropdown-list']/li//span[@class='css-16eo56s']")
-            print(options_labels)
             for option_label in options_labels:
                 option_text = option_label.text.strip()
-                match = re.match(r"([a-zA-Z]+)", option_text)
-                if match:
-                    clean_option_text = match.group(1) 
-                    if clean_option_text.lower() == self.subject.lower():
-                        option_input = option_label.find_element(By.XPATH, "./ancestor::li//input[@type='checkbox']")
-                        option_input.click()
-                        log_info(f"Subject '{self.subject}' selected.")
-                        break
+                if option_text.lower() == self.subject.lower():
+                    option_input = option_label.find_element(By.XPATH, "./ancestor::li//input[@type='checkbox']")
+                    option_input.click()
+                    log_info(f"Subject '{self.subject}' selected.")
+                    break
+                else:
+                    log_warning(f"Subject '{self.subject}' not found. Selecting 'Any' by default")
+                    break
+                    
         except TimeoutException:
             log_warning("Timeout occurred while trying to select the subject.")
 
