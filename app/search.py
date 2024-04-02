@@ -58,8 +58,7 @@ class NYSearch:
                 option_text = option_label.text.strip()
                 match = re.match(r"^([a-zA-Z\s\.]+)", option_text)
                 if match:
-                    clean_option_text = match.group(1).strip()
-                    log_info(clean_option_text)                    # Compara o texto limpo (sem números) com self.subject, ignorando maiúsculas/minúsculas
+                    clean_option_text = match.group(1).strip()                 # Compara o texto limpo (sem números) com self.subject, ignorando maiúsculas/minúsculas
                     if clean_option_text.lower() == self.subject.lower():
                         option_input = option_label.find_element(By.XPATH, "./ancestor::li//input[@type='checkbox']")
                         option_input.click()
@@ -93,6 +92,9 @@ class NYSearch:
             log_info(f"Initiating search with query '{self.query}' and subject '{self.subject}' for the past {self.months} months.")
             self.open_search()
             self.select_subject()
+
+            # Wait NYtimes to load the news
+            time.sleep(2)
 
             # Get quantity
             self.quantity = self.news_quantity()
