@@ -1,6 +1,5 @@
 import urllib.parse
 from utils.date import date_formatting
-import config
 
 class UrlParser:
     def __init__(self, query, months):

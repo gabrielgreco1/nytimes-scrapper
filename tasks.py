@@ -2,7 +2,6 @@ from app.run import RunClass
 from infra.driver import driver
 from robocorp.tasks import task
 from robocorp import workitems
-import config
 
 driver_class = driver()
 driver1 = driver_class.set_webdriver()

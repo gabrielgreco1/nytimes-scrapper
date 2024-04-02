@@ -1,4 +1,3 @@
-from utils.directory import directory
 from infra.download_image import downloads
 from domain.save_data import save
 from domain.money import moneychecker
